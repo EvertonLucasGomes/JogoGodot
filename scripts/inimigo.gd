@@ -5,12 +5,14 @@ const JUMP_VELOCITY = -400.0
 
 var direction := -1
 var original_position := Vector2.ZERO
+@export var enemy_score := 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var texture := $texture
 @onready var anim := $anim as AnimationPlayer
+@onready var die = $die as AudioStreamPlayer
 
 func _ready():
 	original_position = position
@@ -36,4 +38,7 @@ func _physics_process(delta):
 
 func _on_anim_animation_finished(anim_name):
 	if anim_name == "hurt": 
+		die.play()
+		await die.finished
 		queue_free()
+		Globals.score += enemy_score

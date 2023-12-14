@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkc883och7xcm"]
+[gd_scene load_steps=17 format=3 uid="uid://dkc883och7xcm"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_cjjqd"]
 [ext_resource type="Texture2D" uid="uid://bt22eni0u45ht" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Idle (32 x 32).png" id="2_457o0"]
+[ext_resource type="Texture2D" uid="uid://b2rb20nrefsew" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="2_uebs4"]
 [ext_resource type="Texture2D" uid="uid://b6w10g7w2xsrx" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Jumping (32 x 32).png" id="3_wchjx"]
 [ext_resource type="Texture2D" uid="uid://clirjor41p1li" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Running (32 x 32).png" id="4_2lw81"]
+[ext_resource type="AudioStream" uid="uid://cult82djrs0ug" path="res://sounds/jump.wav" id="6_ciive"]
+[ext_resource type="AudioStream" uid="uid://bf1ff6iapig8c" path="res://sounds/hurt.wav" id="7_x8pou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rx517"]
-size = Vector2(14, 14)
+size = Vector2(14, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5jw2"]
 atlas = ExtResource("2_457o0")
@@ -34,6 +37,14 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pt5nr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uebs4")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s5jw2")
@@ -72,17 +83,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8k0up"]
-size = Vector2(16, 11)
+size = Vector2(18, 13)
 
 [node name="player" type="CharacterBody2D"]
-position = Vector2(-5, -15)
+position = Vector2(-6, -13)
 collision_mask = 21
 script = ExtResource("1_cjjqd")
 metadata/_edit_group_ = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(5, 7)
+position = Vector2(5, 6.5)
 shape = SubResource("RectangleShape2D_rx517")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -91,7 +101,7 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 [node name="anim" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_pt5nr")
-animation = &"jump"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="hurtbox" type="Area2D" parent="."]
@@ -99,9 +109,27 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="colision" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(5, 4.5)
+position = Vector2(5, 5.5)
 shape = SubResource("RectangleShape2D_8k0up")
 
 [node name="remote" type="RemoteTransform2D" parent="."]
+
+[node name="ray_right" type="RayCast2D" parent="."]
+position = Vector2(17, 26)
+target_position = Vector2(13, 0)
+collision_mask = 18
+
+[node name="ray_left" type="RayCast2D" parent="."]
+position = Vector2(-7, 26)
+target_position = Vector2(-13, 0)
+collision_mask = 18
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ciive")
+volume_db = -15.0
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_x8pou")
+volume_db = -15.0
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

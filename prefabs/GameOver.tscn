@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsuoyxfn5gvg7"]
+
+[ext_resource type="Script" path="res://scripts/GameOver.gd" id="1_owf8l"]
+[ext_resource type="Texture2D" uid="uid://b5c01mrmfur5l" path="res://assets/Mini FX, Items & UI/tile.png" id="2_r5nrt"]
+[ext_resource type="Texture2D" uid="uid://4hjljkde0cau" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/game_over.png" id="3_xa3kg"]
+[ext_resource type="Theme" uid="uid://dg00firgr87e7" path="res://default_button.tres" id="4_w01qh"]
+[ext_resource type="Texture2D" uid="uid://b2rb20nrefsew" path="res://assets/Sprite Pack 2/Sprite Pack 2/2 - Mr. Mochi/Hurt (32 x 32).png" id="5_rq31s"]
+[ext_resource type="AudioStream" uid="uid://4h1dbh2ggfws" path="res://sounds/Sadness   8 bit Relaxing Music.mp3" id="6_ubtwp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ou06v"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_owf8l")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 1280.0
+offset_bottom = 640.0
+texture = ExtResource("2_r5nrt")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+texture = ExtResource("3_xa3kg")
+
+[node name="start_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_w01qh")
+text = "Restart"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ou06v")
+
+[node name="menu_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_w01qh")
+text = "Menu"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ou06v")
+
+[node name="quit_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_w01qh")
+text = "Quit
+"
+
+[node name="mochi" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+texture = ExtResource("5_rq31s")
+expand_mode = 2
+flip_h = true
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ubtwp")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/menu_button" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/menu_button" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_button" to="." method="_on_quit_button_pressed"]

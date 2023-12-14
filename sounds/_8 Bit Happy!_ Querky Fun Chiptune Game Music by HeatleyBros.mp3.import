@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dq45ie5kyas6o"
+path="res://.godot/imported/_8 Bit Happy!_ Querky Fun Chiptune Game Music by HeatleyBros.mp3-0ed82435715c2c181581248af6ce1e51.mp3str"
+
+[deps]
+
+source_file="res://sounds/_8 Bit Happy!_ Querky Fun Chiptune Game Music by HeatleyBros.mp3"
+dest_files=["res://.godot/imported/_8 Bit Happy!_ Querky Fun Chiptune Game Music by HeatleyBros.mp3-0ed82435715c2c181581248af6ce1e51.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -14,12 +14,15 @@ config/name="MeuJogoTeste"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://singletons/globals.gd"
+
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=640
 window/stretch/mode="viewport"
-window/stretch/scale=2.0
 
 [rendering]
 

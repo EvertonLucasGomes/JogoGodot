@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://nfyncbq5f0tn"]
+
+[ext_resource type="Script" path="res://scripts/finish.gd" id="1_jpta7"]
+
+[node name="finish" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_jpta7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

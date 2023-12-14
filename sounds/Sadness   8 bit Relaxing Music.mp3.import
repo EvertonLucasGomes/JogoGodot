@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4h1dbh2ggfws"
+path="res://.godot/imported/Sadness   8 bit Relaxing Music.mp3-c2862b233371d2efbfeab3c3c7861df0.mp3str"
+
+[deps]
+
+source_file="res://sounds/Sadness   8 bit Relaxing Music.mp3"
+dest_files=["res://.godot/imported/Sadness   8 bit Relaxing Music.mp3-c2862b233371d2efbfeab3c3c7861df0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
